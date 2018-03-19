@@ -1,0 +1,19 @@
+function id = getHeuristicByEuclideanDistanceBin(items, hyperHeuristics, featuresV, maxCapacity)
+    [rows, ~] = size(hyperHeuristics);
+    for i = 1:size(featuresV)
+        aux(i) = getFeaturesBin(featuresV(i),items, maxCapacity);
+    end
+    min = intmax;
+    id = 1;
+    disp("************************");
+    disp(items(1));
+    for row = 1: rows
+        possibleMin = sqrt(sum((aux-hyperHeuristics(row,:)).^2));
+        disp(possibleMin);
+        disp("-------------");
+        if(possibleMin < min)
+            min = possibleMin;
+            id = row;
+        end
+    end
+end
